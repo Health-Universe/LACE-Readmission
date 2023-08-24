@@ -30,13 +30,6 @@ def predict_readmission(length_of_stay, acuity, comorbidity, ed_visits):
     lace_score = los_score + acuity + comorbidity + ed_score
     return lace_score
 
-st.title("30-Day Readmission Prediction using LACE Index")
-
-st.write("Predict the likelihood of a 30-day readmission to the hospital using the LACE Index.")
-
-# Main App
-st.title("30-Day Readmission Prediction using LACE Index")
-
 # Description
 st.write("""
 ## Description
@@ -66,7 +59,7 @@ st.write("""
 
 # Data Input Section
 st.write("## Data Input")
-with st.beta_expander("Provide Patient Details"):
+with st.expander("Provide Patient Details"):
     length_of_stay = st.number_input("Enter length of stay (in days)", min_value=0, max_value=365)
     acuity = st.selectbox("Select the acuity of the admission", [1, 3], index=1, help="Non-urgent = 1, Urgent = 3")
     comorbidity = st.slider("Comorbidity score (Charlson Comorbidity Index)", 0, 4, 2)
