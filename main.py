@@ -30,23 +30,15 @@ def predict_readmission(length_of_stay, acuity, comorbidity, ed_visits):
     lace_score = los_score + acuity + comorbidity + ed_score
     return lace_score
 
+# Main App
+st.title("30-Day Readmission Prediction using LACE Index")
+
 # Description
 st.write("""
 ## Description
 The LACE Index helps healthcare professionals identify patients who are at high risk for readmission 
-or death within 30 days of discharge. 
-
-By assessing Length of stay, Acuity of the admission, Comorbidity, and Emergency department visits, 
+or death within 30 days of discharge. By assessing Length of stay, Acuity of the admission, Comorbidity, and Emergency department visits, 
 this tool provides a risk score to guide post-discharge care.
-""")
-
-# Benefits
-st.write("""
-## Benefits to Value-Based Care Organizations
-1. **Improved Patient Outcomes:** Early identification of high-risk patients can lead to better post-discharge care.
-2. **Resource Allocation:** Allocate resources more efficiently by focusing on high-risk patients.
-3. **Financial Savings:** Preventing readmissions can lead to significant savings under value-based care reimbursement models.
-4. **Enhanced Patient Experience:** Reducing readmissions can lead to higher patient satisfaction scores.
 """)
 
 # Usage Instructions
@@ -57,13 +49,12 @@ st.write("""
 3. The app will display the LACE score and associated risk level for a 30-day readmission.
 """)
 
-# Data Input Section
+# Data Input
 st.write("## Data Input")
-with st.expander("Provide Patient Details"):
-    length_of_stay = st.number_input("Enter length of stay (in days)", min_value=0, max_value=365)
-    acuity = st.selectbox("Select the acuity of the admission", [1, 3], index=1, help="Non-urgent = 1, Urgent = 3")
-    comorbidity = st.slider("Comorbidity score (Charlson Comorbidity Index)", 0, 4, 2)
-    ed_visits = st.number_input("Enter number of ED visits in the last 6 months", min_value=0, max_value=10)
+length_of_stay = st.number_input("Enter length of stay (in days)", min_value=0, max_value=365)
+acuity = st.selectbox("Select the acuity of the admission", [1, 3], index=1, help="Non-urgent = 1, Urgent = 3")
+comorbidity = st.slider("Comorbidity score (Charlson Comorbidity Index)", 0, 4, 2)
+ed_visits = st.number_input("Enter number of ED visits in the last 6 months", min_value=0, max_value=10)
 
 # Prediction Section
 if st.button("Predict"):
